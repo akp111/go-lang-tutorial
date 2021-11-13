@@ -1,7 +1,10 @@
 //Declare a greetings package to collect related functions.
 package greetings
 
-import "fmt"
+import (
+    "errors"
+    "fmt"
+)
 
 // Hello returns a greeting for the named person.
 //takes a name parameter whose type is string
@@ -11,7 +14,12 @@ import "fmt"
 // When importing a package, you can refer only to its exported names. Any "unexported" names are not accessible from outside the package.
 // if you use food.pizza --> error because it is not exported, but if you use food.Pizza --> it would work
 // fun <name of function>(<function parameter and its type>)<return type>
-func Hello(name string) string {
+//in case of multiple return type use (<type1>, <type2>) else just use <type>
+func Hello(name string) (string, error) {
+	 // If no name was given, return an error with a message.
+	 if name == "" {
+        return "", errors.New("empty name")
+    }
     // Return a greeting that embeds the name in a message.
 	//declare a variable message
 	//the := operator is a shortcut for declaring and initializing a variable in one line. the variable type is defined based on value on right side
@@ -20,5 +28,5 @@ func Hello(name string) string {
 	// var message string
 	// message = fmt.Sprintf("Hi, %v. Welcome!", name)
 	//return the value
-    return message
+    return message,nil
 }
