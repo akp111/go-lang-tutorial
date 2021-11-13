@@ -2,10 +2,15 @@
 package main
 
 // Import the popular fmt package, which contains functions for formatting text, including printing to the console.
-import "fmt"
+import (
+    "fmt"
+
+    "github.com/akp111/greetings"
+)
 // For using external packages
-import "rsc.io/quote"
+// import "rsc.io/quote"
 //Implement a main function to print a message to the console. A main function executes by default when you run the main package.
 func main() {
-    fmt.Println(quote.Go())
+    message := greetings.Hello("Ashis")
+    fmt.Println(message)
 }
