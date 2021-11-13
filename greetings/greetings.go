@@ -4,6 +4,8 @@ package greetings
 import (
     "errors"
     "fmt"
+    "math/rand"
+    "time"
 )
 
 // Hello returns a greeting for the named person.
@@ -23,10 +25,33 @@ func Hello(name string) (string, error) {
     // Return a greeting that embeds the name in a message.
 	//declare a variable message
 	//the := operator is a shortcut for declaring and initializing a variable in one line. the variable type is defined based on value on right side
-    message := fmt.Sprintf("Hi, %v. Welcome to the Go Tutorial!", name)
+    message := fmt.Sprintf(randomFormat(), name)
 	//or
 	// var message string
 	// message = fmt.Sprintf("Hi, %v. Welcome!", name)
 	//return the value
     return message,nil
+}
+
+// init sets initial values for variables used in the function.
+//Go executes init functions automatically at program startup, after global variables have been initialized.
+func init() {
+    rand.Seed(time.Now().UnixNano())
+}
+
+// randomFormat returns one of a set of greeting messages. The returned
+// message is selected at random.
+//Note that randomFormat starts with a lowercase letter, making it accessible only to code in its own package (in other words, it's not exported).
+func randomFormat() string {
+    // A slice of message formats.
+	//When declaring a slice, you omit its size in the brackets, like this: []string. This tells Go that the size of the array underlying the slice can be dynamically changed.
+    formats := []string{
+        "Hi, %v. Welcome!",
+        "Great to see you, %v!",
+        "Hail, %v! Well met!",
+    }
+
+    // Return a randomly selected message format by specifying
+    // a random index for the slice of formats.
+    return formats[rand.Intn(len(formats))]
 }
