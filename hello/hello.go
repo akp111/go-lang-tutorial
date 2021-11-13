@@ -19,9 +19,9 @@ func main() {
     // Shows the time of error
     // log.SetFlags(1)
     // Request a greeting message.
-    message, err := greetings.Hello("")
-    //Request for success
     // message, err := greetings.Hello("")
+    //Request for success
+    message, err := greetings.Hello("Ashis")
     // If an error was returned, print it to the console and
     // exit the program.
     if err != nil {
