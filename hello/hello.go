@@ -21,13 +21,19 @@ func main() {
     // Request a greeting message.
     // message, err := greetings.Hello("")
     //Request for success
-    message, err := greetings.Hello("Ashis")
+    message, err1 := greetings.Hello("Ashis")
+    // A slice of names.
+    names := []string{"Gladys", "Samantha", "Darrin"}
+    // Request greeting messages for the names.
     // If an error was returned, print it to the console and
     // exit the program.
-    if err != nil {
-        log.Fatal(err)
-    }
+    messages, err := greetings.Hellos(names)
+    if err != nil && err1 != nil {
+            log.Fatal(err)
+        }
+
     // If no error was returned, print the returned message
     // to the console.
     fmt.Println(message)
+    fmt.Println(messages)
 }
